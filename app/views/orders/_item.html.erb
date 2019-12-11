@@ -1,0 +1,19 @@
+<tr>
+  <td>
+    <%= image_tag product.image.tiny %>
+  </td>
+  <td>
+    <h4><%= product.name %></h4>
+    <br>
+    <p><%= product.description %></p>
+  </td>
+  <td>
+    <%= humanized_money_with_symbol price_cents / 100.to_f %>
+  </td>
+  <td>
+    <%= price_cents / total_cents %>
+  </td>
+  <td>
+    <%= humanized_money_with_symbol total_cents / 100.to_f %>
+  </td>
+</tr>
