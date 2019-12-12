@@ -11,6 +11,6 @@
   <div class="panel-header p-3">Categories</div>
   <div class="panel-body">
     <h5 class="panel-title">Category Count</h5>
-    <p class="panel-text"><%= @category_count %></p>
+    <%= link_to @category_count,  [:admin, :categories], class: "panel-text" %></p>
   </div>
 </div>
