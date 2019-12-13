@@ -5,21 +5,20 @@ Rails.application.routes.draw do
   resources :products, only: [:index, :show]
   resources :about, only: [:index]
   resources :categories, only: [:show]
-
+  
   resource :cart, only: [:show] do
     post   :add_item
     post   :remove_item
   end
-
+  
   resources :orders, only: [:create, :show]
-  resources :users, only: [:new, :create]
 
-  get '/login' => 'sessions#new', as: :sessions
-  post '/login' => 'sessions#create'
-  get '/logout' => 'sessions#destroy'
-
-  get '/signup', to: 'users#new'
-  post '/users', to: 'users#create'
+  get '/login', to: 'sessions#new', as: :new_session
+  post '/login', to: 'sessions#create', as: :sessions
+  get '/logout', to: 'sessions#destroy', as: :logout
+  
+  get '/signup', to: 'users#new', as: :new_user
+  post '/signup', to: 'users#create', as: :users
 
   namespace :admin do
     root to: 'dashboard#show'
