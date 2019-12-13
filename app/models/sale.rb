@@ -5,6 +5,10 @@ class Sale < ActiveRecord::Base
   validates :ends_on, presence: true
   validates :percent_off, presence: true
 
+  def self.active
+    where("sales.starts_on <= ? AND sales.ends_on >= ?", Date.today, Date.today)
+  end
+
   def finished?
     Date.today > ends_on
   end
