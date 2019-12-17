@@ -16,6 +16,8 @@ class ApplicationController < ActionController::Base
 
   def cart
     @cart ||= cookies[:cart].present? ? JSON.parse(cookies[:cart]) : {}
+    @cart["quantity"] = @cart.values.sum - @cart["quantity"].to_i
+    @cart
   end
   helper_method :cart
 

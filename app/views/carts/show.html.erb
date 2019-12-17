@@ -35,17 +35,22 @@
 
     <div class="row">
       <div class="col-xs-12">
-        <%= form_tag orders_path do %>
-          <script
-            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-            data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-            data-amount="<%= cart_subtotal_cents %>"
-            data-name="Jungle"
-            data-description="Khurram Virani's Jungle Order"
-            data-locale="auto"
-            data-email="kvirani@gmail.com"
-            data-currency="cad">
-          </script>
+        <% if current_user %>
+          <%= form_tag orders_path do %>
+            <script
+              src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+              data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+              data-amount="<%= cart_subtotal_cents %>"
+              data-name="Jungle"
+              data-description="Khurram Virani's Jungle Order"
+              data-locale="auto"
+              data-email="kvirani@gmail.com"
+              data-currency="cad">
+            </script>
+          <% end %>
+        <% else %>
+          <%= link_to 'Login to checkout', [:new, :session], class: 'btn btn-lg btn-info mr-2' %>
+          <%= link_to 'Don\'t have an account yet?', [:new, :user], class: 'btn btn-lg btn-info ml-2' %>
         <% end %>
       </div>
     </div>

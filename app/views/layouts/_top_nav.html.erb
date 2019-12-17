@@ -66,7 +66,7 @@
 
         <li>
           <%= link_to cart_path do %>
-            <%= fa_icon "shopping-cart" %> My Cart (<%= cart.size %>)
+            <%= fa_icon "shopping-cart" %> My Cart (<%= cart["quantity"] %>)
           <% end %>
         </li>
       </ul>
