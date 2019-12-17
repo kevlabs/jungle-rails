@@ -17,8 +17,9 @@ class SessionsController < ApplicationController
     @session = Session.new(session_params)
     @session.valid?
 
-    user = User.find_by_email(params[:session][:email])
-    if user && user.authenticate(params[:session][:password])
+    user = User.authenticate_with_credentials(params[:session][:email], params[:session][:password])
+
+    if user
       session[:user_id] = user.id
       redirect_to :root
     else
